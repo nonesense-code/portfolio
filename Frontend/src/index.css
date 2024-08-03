@@ -5,3 +5,26 @@
 * {
   font-family: "Roboto";
 }
+
+.hovering {
+  font-family: "poppins";
+  font-weight: bolder;
+  letter-spacing: 10px;
+  color: rgb(29, 28, 28);
+  white-space: nowrap;
+  -webkit-text-stroke: 1px #95c11e;
+}
+
+.marquee_text {
+  font-family: "poppins";
+  font-weight: bolder;
+  letter-spacing: 10px;
+  white-space: nowrap;
+  color: #000;
+  -webkit-text-stroke: 1px #fff;
+}
+
+.marquee_text:hover {
+  -webkit-text-stroke: 0px;
+  -webkit-text-fill-color: lightseagreen;
+}

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { easeInOut, motion } from "framer-motion";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
@@ -8,6 +8,7 @@ import Typed from "typed.js";
 gsap.registerPlugin(ScrollTrigger);
 
 function Home() {
+  const [isHovering, setHovering] = useState(false);
   const el = React.useRef(null);
 
   useEffect(() => {
@@ -27,7 +28,7 @@ function Home() {
     window.scrollTo({ top: 0, behavior: "smooth" });
 
     gsap.to("#navbar", {
-      backgroundColor: "#000",
+      background: "#000",
       height: "72px",
       duration: 0.2,
       scrollTrigger: {
@@ -45,7 +46,7 @@ function Home() {
         scroller: "body",
         start: "top -20%",
         end: "top -40%",
-        scrub: 2,
+        scrub: 0.4,
       },
     });
 
@@ -96,13 +97,13 @@ function Home() {
         className="h-32 w-32 bg-[#95C11E] fixed rounded-full -translate-x-1/2 -translate-y-1/2 blur-[80px] hidden"
       ></div>
 
-      <div className="px-10 z-40" id="main">
-        <div className="page1 pt-32">
+      <div className="z-40" id="main">
+        <div className="page1 px-10 pt-32 flex items-center justify-between h-screen">
           <div className="w-96 backdrop-blur-xl rounded-xl p-4">
             <h1 className="text-4xl font-semibold border-b-2 border-zinc-400/20 text-sky-300/50">
               Hello there!
             </h1>
-            <h1 className="pt-4 text-3xl font-semibold whitespace-nowrap tracking-tight">
+            <h1 className="pt-4 text-3xl font-semibold whitespace-nowrap tracking-tight text-zinc-300/90">
               Welcome to my Portfolio 👋🏼
             </h1>
             <div className="text-zinc-400 pt-4">
@@ -112,8 +113,70 @@ function Home() {
               </div>
             </div>
           </div>
+          <div className="w-96 backdrop-blur-sm rounded-xl p-4">
+            <div>
+              {!isHovering ? (
+                <div
+                  onMouseEnter={() => {
+                    setHovering(true);
+                  }}
+                  className="hovering flex items-center text-6xl justify-center text-[#95c11e] font-semibold tracking-tight h-40 relative"
+                >
+                  Hover me
+                </div>
+              ) : (
+                <div
+                  onMouseLeave={() => {
+                    setHovering(false);
+                  }}
+                  className="h-40 w-full"
+                >
+                  <img
+                    src="https://t3.ftcdn.net/jpg/06/05/92/12/360_F_605921203_pjFlIiOTdIthn36WU0uAMdkXogyxZPkQ.jpg"
+                    alt=""
+                    className="rounded-xl h-full w-full object-cover border-4 border-stone-400/30"
+                  />
+                </div>
+              )}
+            </div>
+          </div>
         </div>
-        <div className="page2 h-screen"></div>
+        <div className="page2 h-screen text-white">
+          <div className="w-full overflow-hidden whitespace-nowrap flex text-[120px]">
+            <motion.h1
+              initial={{ x: 0 }}
+              animate={{ x: "-100%" }}
+              transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+              className="marquee_text pl-4"
+            >
+              Namaste I am Kaushal
+            </motion.h1>
+            <motion.h1
+              initial={{ x: 0 }}
+              animate={{ x: "-100%" }}
+              transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+              className="marquee_text pl-4"
+            >
+              Namaste I am Kaushal
+            </motion.h1>
+            <motion.h1
+              initial={{ x: 0 }}
+              animate={{ x: "-100%" }}
+              transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+              className="marquee_text pl-4"
+            >
+              Namaste I am Kaushal
+            </motion.h1>
+            <motion.h1
+              initial={{ x: 0 }}
+              animate={{ x: "-100%" }}
+              transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+              className="marquee_text pl-4"
+            >
+              Namaste I am Kaushal
+            </motion.h1>
+          </div>
+        </div>
         <div className="page3"></div>
       </div>
     </>
