@@ -120,7 +120,7 @@ function Home() {
                   onMouseEnter={() => {
                     setHovering(true);
                   }}
-                  className="hovering flex items-center text-6xl justify-center text-[#95c11e] font-semibold tracking-tight h-40 relative"
+                  className="hovering flex items-center text-6xl justify-center font-semibold tracking-tight h-40 relative"
                 >
                   Hover me
                 </div>

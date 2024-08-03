@@ -7,12 +7,12 @@
 }
 
 .hovering {
-  font-family: "poppins";
+  font-family: cursive;
   font-weight: bolder;
   letter-spacing: 10px;
-  color: rgb(29, 28, 28);
   white-space: nowrap;
-  -webkit-text-stroke: 1px #95c11e;
+  color: transparent;
+  -webkit-text-stroke: 4px #95c11e;
 }
 
 .marquee_text {
@@ -26,5 +26,5 @@
 
 .marquee_text:hover {
   -webkit-text-stroke: 0px;
-  -webkit-text-fill-color: lightseagreen;
+  -webkit-text-fill-color: #95c11e;
 }
