@@ -3,6 +3,8 @@ import { easeInOut, motion } from "framer-motion";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import myImage from "../assets/images/myImage.JPG";
+import Project1 from "../assets/images/Project1.png";
+import Project2 from "../assets/images/Project2.png";
 import Typed from "typed.js";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -49,13 +51,6 @@ function Home() {
         scrub: 0.4,
       },
     });
-
-    window.addEventListener("mousemove", (e) => {
-      const cursor = document.getElementById("cursor");
-      cursor.style.display = "block";
-      cursor.style.left = e.x + "px";
-      cursor.style.top = e.y + "px";
-    });
   }, []);
 
   return (
@@ -92,14 +87,14 @@ function Home() {
         <div></div>
       </div>
 
-      <div
+      {/* <div
         id="cursor"
         className="h-32 w-32 bg-[#95C11E] fixed rounded-full -translate-x-1/2 -translate-y-1/2 blur-[80px] hidden"
-      ></div>
+      ></div> */}
 
       <div className="z-40" id="main">
         <div className="page1 px-10 pt-32 flex items-center justify-between h-screen">
-          <div className="w-96 backdrop-blur-xl rounded-xl p-4">
+          <div className="w-96 backdrop-blur-xl p-4 border-[1px] border-zinc-600/30 rounded-xl">
             <h1 className="text-4xl font-semibold border-b-2 border-zinc-400/20 text-sky-300/50">
               Hello there!
             </h1>
@@ -141,7 +136,7 @@ function Home() {
             </div>
           </div>
         </div>
-        <div className="page2 h-screen text-white">
+        <div className="page2 text-white mb-20">
           <div className="w-full overflow-hidden whitespace-nowrap flex text-[120px]">
             <motion.h1
               initial={{ x: 0 }}
@@ -177,7 +172,46 @@ function Home() {
             </motion.h1>
           </div>
         </div>
-        <div className="page3"></div>
+        <div className="page3 p-8">
+          <div>
+            <h1 className="text-white text-center text-6xl mb-8 uppercase font-extrabold tracking-wide">
+              My projects
+            </h1>
+          </div>
+          <div className="flex gap-10 items-center justify-evenly">
+            <div className="w-96">
+              <a href="https://techso.vercel.app/" target="_blank">
+                <img
+                  src={Project1}
+                  alt=""
+                  className="rounded-xl w-full h-full object-cover object-center"
+                />
+              </a>
+            </div>
+            <div className="w-96">
+              <a
+                href="https://portfolio-eight-flax-81.vercel.app/"
+                target="_blank"
+              >
+                <img
+                  src="https://cdn.pixabay.com/photo/2017/02/23/23/43/quote-2093519_960_720.jpg"
+                  alt=""
+                  className="rounded-xl w-full h-full object-cover object-center"
+                />
+              </a>
+            </div>
+            <div className="w-96">
+              <a href="https://tech-cyan-one.vercel.app/" target="_blank">
+                <img
+                  src={Project2}
+                  alt=""
+                  className="rounded-xl w-full h-full object-cover object-center"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="page4"></div>
       </div>
     </>
   );
