@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { easeInOut, motion } from "framer-motion";
+import { easeInOut, easeOut, motion } from "framer-motion";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import myImage from "../assets/images/myImage.JPG";
@@ -179,7 +179,13 @@ function Home() {
             </h1>
           </div>
           <div className="flex gap-10 items-center justify-evenly">
-            <div className="w-96">
+            <motion.div
+              whileHover={{
+                scale: 1.1,
+                ease: easeOut,
+              }}
+              className="w-96"
+            >
               <a href="https://techso.vercel.app/" target="_blank">
                 <img
                   src={Project1}
@@ -187,8 +193,14 @@ function Home() {
                   className="rounded-xl w-full h-full object-cover object-center"
                 />
               </a>
-            </div>
-            <div className="w-96">
+            </motion.div>
+            <motion.div
+              whileHover={{
+                scale: 1.1,
+                ease: easeOut,
+              }}
+              className="w-96"
+            >
               <a
                 href="https://portfolio-eight-flax-81.vercel.app/"
                 target="_blank"
@@ -199,8 +211,14 @@ function Home() {
                   className="rounded-xl w-full h-full object-cover object-center"
                 />
               </a>
-            </div>
-            <div className="w-96">
+            </motion.div>
+            <motion.div
+              whileHover={{
+                scale: 1.1,
+                ease: easeOut,
+              }}
+              className="w-96"
+            >
               <a href="https://tech-cyan-one.vercel.app/" target="_blank">
                 <img
                   src={Project2}
@@ -208,7 +226,7 @@ function Home() {
                   className="rounded-xl w-full h-full object-cover object-center"
                 />
               </a>
-            </div>
+            </motion.div>
           </div>
         </div>
         <div className="page4"></div>
