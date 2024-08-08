@@ -6,11 +6,12 @@ import myImage from "../assets/images/myImage.JPG";
 import Project1 from "../assets/images/Project1.png";
 import Project2 from "../assets/images/Project2.png";
 import Typed from "typed.js";
-
+import eduvideo from "../assets/videos/education.mp4";
 gsap.registerPlugin(ScrollTrigger);
 
 function Home() {
   const [isHovering, setHovering] = useState(false);
+  const [isBgVisible, setBgVisible] = useState(false);
   const el = React.useRef(null);
 
   useEffect(() => {
@@ -27,8 +28,7 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-
+    window.scrollTo({ top: 0, behaviour: "smooth" });
     gsap.to("#navbar", {
       background: "#000",
       height: "72px",
@@ -51,19 +51,34 @@ function Home() {
         scrub: 0.4,
       },
     });
+
+    ScrollTrigger.create({
+      trigger: "#page1",
+      start: "top center",
+      end: "bottom center",
+      onEnter: () => setBgVisible(true), // Show background image
+      onLeave: () => setBgVisible(false), // Hide background image
+      onEnterBack: () => setBgVisible(true), // Show background image
+      onLeaveBack: () => setBgVisible(false), // Hide background image
+    });
   }, []);
 
   return (
     <>
-      <div
-        className="fixed inset-0 -z-10"
-        style={{
-          backgroundImage: `url(${myImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
-      ></div>
+      {/* Conditional rendering for background image */}
+      {isBgVisible ? (
+        <div
+          className="fixed inset-0 -z-10"
+          style={{
+            backgroundImage: `url(${myImage})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        ></div>
+      ) : (
+        <div className="fixed inset-0 -z-10 bg-black"></div>
+      )}
       <div
         className="w-full fixed h-20 flex items-center justify-between px-8 z-50"
         id="navbar"
@@ -71,7 +86,7 @@ function Home() {
         <div className="text-white text-2xl font-semibold tracking-wide flex">
           {["K", "a", "u", "s", "h", "a", "l"].map((item, index) => (
             <motion.div
-              key={index} // Add key to avoid React warnings
+              key={index}
               initial={{ y: "80%", opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{
@@ -87,13 +102,11 @@ function Home() {
         <div></div>
       </div>
 
-      {/* <div
-        id="cursor"
-        className="h-32 w-32 bg-[#95C11E] fixed rounded-full -translate-x-1/2 -translate-y-1/2 blur-[80px] hidden"
-      ></div> */}
-
       <div className="z-40" id="main">
-        <div className="page1 px-10 pt-32 flex items-center justify-between h-screen">
+        <div
+          className="page1 px-10 pt-32 flex items-center justify-between h-screen"
+          id="page1"
+        >
           <div className="w-96 backdrop-blur-xl p-4 border-[1px] border-zinc-600/30 rounded-xl">
             <h1 className="text-4xl font-semibold border-b-2 border-zinc-400/20 text-sky-300/50">
               Hello there!
@@ -172,64 +185,116 @@ function Home() {
             </motion.h1>
           </div>
         </div>
-        <div className="page3 p-8">
-          <div>
-            <h1 className="text-white text-center text-6xl mb-8 uppercase font-extrabold tracking-wide">
-              My projects
-            </h1>
-          </div>
-          <div className="flex gap-10 items-center justify-evenly">
-            <motion.div
-              whileHover={{
-                scale: 1.1,
-                ease: easeOut,
-              }}
-              className="w-96"
-            >
-              <a href="https://techso.vercel.app/" target="_blank">
-                <img
-                  src={Project1}
-                  alt=""
-                  className="rounded-xl w-full h-full object-cover object-center"
-                />
-              </a>
-            </motion.div>
-            <motion.div
-              whileHover={{
-                scale: 1.1,
-                ease: easeOut,
-              }}
-              className="w-96"
-            >
-              <a
-                href="https://portfolio-eight-flax-81.vercel.app/"
-                target="_blank"
+        <div className="page3 p-8" id="page3">
+          <div className="flex flex-col gap-20">
+            <div className="cursor-pointer">
+              <h1 className="text-white text-center text-6xl uppercase font-extrabold tracking-wide">
+                My projects
+              </h1>
+            </div>
+            <div className="flex gap-10 items-center justify-evenly">
+              <motion.div
+                whileHover={{
+                  scale: 1.1,
+                  ease: easeOut,
+                }}
+                className="w-96"
               >
-                <img
-                  src="https://cdn.pixabay.com/photo/2017/02/23/23/43/quote-2093519_960_720.jpg"
-                  alt=""
-                  className="rounded-xl w-full h-full object-cover object-center"
-                />
-              </a>
-            </motion.div>
-            <motion.div
-              whileHover={{
-                scale: 1.1,
-                ease: easeOut,
-              }}
-              className="w-96"
-            >
-              <a href="https://tech-cyan-one.vercel.app/" target="_blank">
-                <img
-                  src={Project2}
-                  alt=""
-                  className="rounded-xl w-full h-full object-cover object-center"
-                />
-              </a>
-            </motion.div>
+                <a href="https://techso.vercel.app/" target="_blank">
+                  <img
+                    src={Project1}
+                    alt=""
+                    className="rounded-xl w-full h-full object-cover object-center"
+                  />
+                </a>
+              </motion.div>
+              <motion.div
+                whileHover={{
+                  scale: 1.1,
+                  ease: easeOut,
+                }}
+                className="w-96"
+              >
+                <a
+                  href="https://portfolio-eight-flax-81.vercel.app/"
+                  target="_blank"
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1722641277067-a7fba0ad1a59?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt=""
+                    className="rounded-xl w-full h-full object-cover object-center"
+                  />
+                </a>
+              </motion.div>
+              <motion.div
+                whileHover={{
+                  scale: 1.1,
+                  ease: easeOut,
+                }}
+                className="w-96"
+              >
+                <a href="https://tech-cyan-one.vercel.app/" target="_blank">
+                  <img
+                    src={Project2}
+                    alt=""
+                    className="rounded-xl w-full h-full object-cover object-center"
+                  />
+                </a>
+              </motion.div>
+            </div>
           </div>
         </div>
-        <div className="page4"></div>
+        <div className="page4 h-screen overflow-hidden mt-32" id="page4">
+          <div className="absolute rounded-2xl overflow-hidden" id="bookvideo">
+            <video src={eduvideo} loop muted autoPlay playsInline>
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div className="z-20 text-black relative py-10 p-8">
+            <div className="text-5xl font-semibold tracking-wider mb-16 text-center text-[#95c11e] cursor-pointer">
+              <h1>Education</h1>
+            </div>
+            <div className="edu_details flex items-center justify-center">
+              <div
+                className="text-2xl w-1/2 h-1/2 backdrop-blur-sm text-center rounded-2xl pt-32 "
+                id="eds"
+              >
+                <div className="flex flex-col gap-6">
+                  <div className="text-3xl font-semibold tracking-wide cursor-pointer text-red-900">
+                    Online Education
+                  </div>
+                  <div>
+                    <ul>
+                      <li>HTML</li>
+                      <li>CSS</li>
+                      <li>JavaScript</li>
+                      <li>React</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div className="text-2xl w-1/2 h-1/2 backdrop-blur-sm text-center rounded-2xl p-6">
+                <div className="flex flex-col gap-6">
+                  <div className="text-3xl font-semibold tracking-wide cursor-pointer text-red-900">
+                    School Level
+                  </div>
+                  <div>
+                    <ul>
+                      <li>
+                        Passed out 10th standard in Jhapa with SEE certificate
+                      </li>
+                      <li>
+                        SLC given in kathmandu (Capital College & Research
+                        Center)
+                      </li>
+                      <li></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
