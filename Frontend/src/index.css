@@ -28,3 +28,31 @@
   -webkit-text-stroke: 0px;
   -webkit-text-fill-color: #95c11e;
 }
+
+.edu_animate::before {
+  content: "";
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 37%;
+  position: absolute;
+  border-bottom: 4px solid #96c11e79;
+}
+
+.edu_animate:hover::before {
+  animation: line 0.4s ease-in-out forwards;
+}
+@keyframes line {
+  0% {
+    width: 0;
+    left: 0;
+  }
+  50% {
+    width: 0%;
+    left: 50%;
+  }
+  100% {
+    width: 100%;
+    left: 0%;
+  }
+}

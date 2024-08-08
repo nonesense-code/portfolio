@@ -16,7 +16,7 @@ function Home() {
 
   useEffect(() => {
     const typed = new Typed(el.current, {
-      strings: ["Kaushal", "Web developer", "Student", "Fresher"],
+      strings: ["Kaushal", "Web developer", "Student", "Freelancer"],
       typeSpeed: 90,
       backDelay: 1000,
       loop: true,
@@ -28,16 +28,16 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behaviour: "smooth" });
+    // window.scrollTo({ top: 0, behaviour: "smooth" });
     gsap.to("#navbar", {
       background: "#000",
-      height: "72px",
+      height: "60px",
       duration: 0.2,
       scrollTrigger: {
         trigger: "#navbar",
         start: "top 0%",
         end: "top -11%",
-        scrub: 0.3,
+        scrub: 0.6,
       },
     });
 
@@ -245,51 +245,54 @@ function Home() {
           </div>
         </div>
         <div className="page4 h-screen overflow-hidden mt-32" id="page4">
-          <div className="absolute rounded-2xl overflow-hidden" id="bookvideo">
-            <video src={eduvideo} loop muted autoPlay playsInline>
+          <div
+            className="absolute rounded-t-2xl overflow-hidden"
+            id="bookvideo"
+          >
+            <video
+              className="brightness-[40%] blur-sm"
+              src={eduvideo}
+              loop
+              muted
+              autoPlay
+              playsInline
+            >
               Your browser does not support the video tag.
             </video>
           </div>
-          <div className="z-20 text-black relative py-10 p-8">
-            <div className="text-5xl font-semibold tracking-wider mb-16 text-center text-[#95c11e] cursor-pointer">
-              <h1>Education</h1>
+          <div className="text-black relative py-10 p-8 flex items-center justify-center flex-col">
+            <div className="relative text-5xl font-semibold tracking-wider mt-12 text-center text-[#95c11e] cursor-pointer">
+              <h1 className="edu_animate">Education</h1>
             </div>
-            <div className="edu_details flex items-center justify-center">
-              <div
-                className="text-2xl w-1/2 h-1/2 backdrop-blur-sm text-center rounded-2xl pt-32 "
-                id="eds"
-              >
-                <div className="flex flex-col gap-6">
-                  <div className="text-3xl font-semibold tracking-wide cursor-pointer text-red-900">
-                    Online Education
-                  </div>
-                  <div>
-                    <ul>
-                      <li>HTML</li>
-                      <li>CSS</li>
-                      <li>JavaScript</li>
-                      <li>React</li>
-                    </ul>
-                  </div>
+            <div
+              className="edu_details flex items-center justify-evenly w-full pt-24"
+              id="eds"
+            >
+              <div className="flex flex-col items-center justify-center gap-6 h-96 w-96 px-8 py-2 text-blue-400 font-semibold backdrop-blur-sm text-2xl">
+                <div className="text-4xl font-semibold tracking-wide cursor-pointer text-stone-400">
+                  Online Education
+                </div>
+                <div>
+                  <ul>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
+                    <li>React</li>
+                  </ul>
                 </div>
               </div>
-              <div className="text-2xl w-1/2 h-1/2 backdrop-blur-sm text-center rounded-2xl p-6">
-                <div className="flex flex-col gap-6">
-                  <div className="text-3xl font-semibold tracking-wide cursor-pointer text-red-900">
-                    School Level
-                  </div>
-                  <div>
-                    <ul>
-                      <li>
-                        Passed out 10th standard in Jhapa with SEE certificate
-                      </li>
-                      <li>
-                        SLC given in kathmandu (Capital College & Research
-                        Center)
-                      </li>
-                      <li></li>
-                    </ul>
-                  </div>
+              <div className="flex flex-col items-center justify-center gap-6 h-96 w-96 px-8 py-2 text-blue-400 font-semibold backdrop-blur-sm text-2xl">
+                <div className="text-4xl font-semibold tracking-wide cursor-pointer text-stone-400">
+                  School Level
+                </div>
+                <div>
+                  <ul>
+                    <li className="whitespace-nowrap">
+                      Completed SEE with certificate
+                    </li>
+                    <li>SLC taken at Capital College, Kathmandu.</li>
+                    <li></li>
+                  </ul>
                 </div>
               </div>
             </div>
