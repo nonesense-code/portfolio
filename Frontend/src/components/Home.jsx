@@ -12,6 +12,7 @@ gsap.registerPlugin(ScrollTrigger);
 function Home() {
   const [isHovering, setHovering] = useState(false);
   const [isBgVisible, setBgVisible] = useState(false);
+  const [load, setLoad] = useState(true);
   const el = React.useRef(null);
 
   useEffect(() => {
@@ -28,7 +29,7 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    // window.scrollTo({ top: 0, behaviour: "smooth" });
+    window.scrollTo({ top: 0, behaviour: "smooth" });
     gsap.to("#navbar", {
       background: "#000",
       height: "60px",
@@ -102,11 +103,8 @@ function Home() {
       </div>
 
       <div className="z-40" id="main">
-        <div
-          className="page1 px-10 pt-32 flex items-center justify-between h-screen"
-          id="page1"
-        >
-          <div className="bg-zinc-900/30 rounded-xl overflow-hidden border-none">
+        <div className="page1 h-screen" id="page1">
+          <div className="rounded-xl overflow-hidden border-none px-10 flex items-center justify-between pt-72">
             <div className="w-96 backdrop-blur-xl p-4 border-[1px] border-zinc-600/30 rounded-xl">
               <h1 className="text-4xl font-semibold border-b-2 border-zinc-400/20 text-sky-300/50">
                 Hello there!
@@ -121,41 +119,42 @@ function Home() {
                 </div>
               </div>
             </div>
-          </div>
-          <div className="bg-zinc-900/30 rounded-xl overflow-hidden border-none">
-            <div className="w-96 backdrop-blur-sm rounded-xl">
-              <div>
-                {!isHovering ? (
-                  <div
-                    onMouseEnter={() => {
-                      setHovering(true);
-                    }}
-                    className="hovering flex items-center text-6xl justify-center font-semibold tracking-tight h-40 relative"
-                  >
-                    <img
-                      src="https://pbs.twimg.com/profile_images/1078262307661111297/R_XwpK5f_400x400.jpg"
-                      alt=""
-                      className="rounded-xl h-full w-full border-4 border-stone-400/30 object-cover object-top"
-                    />
-                  </div>
-                ) : (
-                  <div
-                    onMouseLeave={() => {
-                      setHovering(false);
-                    }}
-                    className="h-40 w-full"
-                  >
-                    <img
-                      src="https://weallrisetogether.org/wp-content/uploads/2023/03/logo-white.png"
-                      alt=""
-                      className="rounded-xl h-full w-full border-4 border-stone-400/30 object-cover object-top"
-                    />
-                  </div>
-                )}
+            <div className="rounded-xl overflow-hidden border-none px-10">
+              <div className="w-96 backdrop-blur-sm rounded-xl">
+                <div>
+                  {!isHovering ? (
+                    <div
+                      onMouseEnter={() => {
+                        setHovering(true);
+                      }}
+                      className="hovering flex items-center text-6xl justify-center font-semibold tracking-tight h-40 relative"
+                    >
+                      <img
+                        src="https://pbs.twimg.com/profile_images/1078262307661111297/R_XwpK5f_400x400.jpg"
+                        alt=""
+                        className="rounded-xl h-full w-full border-4 border-stone-400/30 object-cover object-top"
+                      />
+                    </div>
+                  ) : (
+                    <div
+                      onMouseLeave={() => {
+                        setHovering(false);
+                      }}
+                      className="h-40 w-full"
+                    >
+                      <img
+                        src="https://weallrisetogether.org/wp-content/uploads/2023/03/logo-white.png"
+                        alt=""
+                        className="rounded-xl h-full w-full border-4 border-stone-400/30 object-cover object-top"
+                      />
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
         </div>
+
         <div className="page2 text-white mb-20">
           <div className="w-full overflow-hidden whitespace-nowrap flex text-[120px]">
             <motion.h1
