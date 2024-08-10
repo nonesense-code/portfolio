@@ -56,16 +56,15 @@ function Home() {
       trigger: "#page1",
       start: "top center",
       end: "bottom center",
-      onEnter: () => setBgVisible(true), // Show background image
-      onLeave: () => setBgVisible(false), // Hide background image
-      onEnterBack: () => setBgVisible(true), // Show background image
-      onLeaveBack: () => setBgVisible(false), // Hide background image
+      onEnter: () => setBgVisible(true),
+      onLeave: () => setBgVisible(false),
+      onEnterBack: () => setBgVisible(true),
+      onLeaveBack: () => setBgVisible(false),
     });
   }, []);
 
   return (
     <>
-      {/* Conditional rendering for background image */}
       {isBgVisible ? (
         <div
           className="fixed inset-0 -z-10"
@@ -77,7 +76,7 @@ function Home() {
           }}
         ></div>
       ) : (
-        <div className="fixed inset-0 -z-10 bg-black"></div>
+        <div className="bg-black"></div>
       )}
       <div
         className="w-full fixed h-20 flex items-center justify-between px-8 z-50"
@@ -107,50 +106,66 @@ function Home() {
           className="page1 px-10 pt-32 flex items-center justify-between h-screen"
           id="page1"
         >
-          <div className="w-96 backdrop-blur-xl p-4 border-[1px] border-zinc-600/30 rounded-xl">
-            <h1 className="text-4xl font-semibold border-b-2 border-zinc-400/20 text-sky-300/50">
-              Hello there!
-            </h1>
-            <h1 className="pt-4 text-3xl font-semibold whitespace-nowrap tracking-tight text-zinc-300/90">
-              Welcome to my Portfolio 👋🏼
-            </h1>
-            <div className="text-zinc-400 pt-4">
-              <h1 className="text-3xl">I am,</h1>
-              <div className="text-2xl pt-2">
-                <span ref={el} />
+          <div className="bg-zinc-900/30 rounded-xl overflow-hidden border-none">
+            <div className="w-96 backdrop-blur-xl p-4 border-[1px] border-zinc-600/30 rounded-xl">
+              <h1 className="text-4xl font-semibold border-b-2 border-zinc-400/20 text-sky-300/50">
+                Hello there!
+              </h1>
+              <h1 className="pt-4 text-3xl font-semibold whitespace-nowrap tracking-tight text-zinc-300/90">
+                Welcome to my Portfolio 👋🏼
+              </h1>
+              <div className="text-zinc-400 pt-4">
+                <h1 className="text-3xl">I am,</h1>
+                <div className="text-2xl pt-2">
+                  <span ref={el} />
+                </div>
               </div>
             </div>
           </div>
-          <div className="w-96 backdrop-blur-sm rounded-xl p-4">
-            <div>
-              {!isHovering ? (
-                <div
-                  onMouseEnter={() => {
-                    setHovering(true);
-                  }}
-                  className="hovering flex items-center text-6xl justify-center font-semibold tracking-tight h-40 relative"
-                >
-                  Hover me
-                </div>
-              ) : (
-                <div
-                  onMouseLeave={() => {
-                    setHovering(false);
-                  }}
-                  className="h-40 w-full"
-                >
-                  <img
-                    src="https://t3.ftcdn.net/jpg/06/05/92/12/360_F_605921203_pjFlIiOTdIthn36WU0uAMdkXogyxZPkQ.jpg"
-                    alt=""
-                    className="rounded-xl h-full w-full object-cover border-4 border-stone-400/30"
-                  />
-                </div>
-              )}
+          <div className="bg-zinc-900/30 rounded-xl overflow-hidden border-none">
+            <div className="w-96 backdrop-blur-sm rounded-xl">
+              <div>
+                {!isHovering ? (
+                  <div
+                    onMouseEnter={() => {
+                      setHovering(true);
+                    }}
+                    className="hovering flex items-center text-6xl justify-center font-semibold tracking-tight h-40 relative"
+                  >
+                    <img
+                      src="https://pbs.twimg.com/profile_images/1078262307661111297/R_XwpK5f_400x400.jpg"
+                      alt=""
+                      className="rounded-xl h-full w-full border-4 border-stone-400/30 object-cover object-top"
+                    />
+                  </div>
+                ) : (
+                  <div
+                    onMouseLeave={() => {
+                      setHovering(false);
+                    }}
+                    className="h-40 w-full"
+                  >
+                    <img
+                      src="https://weallrisetogether.org/wp-content/uploads/2023/03/logo-white.png"
+                      alt=""
+                      className="rounded-xl h-full w-full border-4 border-stone-400/30 object-cover object-top"
+                    />
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
         <div className="page2 text-white mb-20">
           <div className="w-full overflow-hidden whitespace-nowrap flex text-[120px]">
+            <motion.h1
+              initial={{ x: 0 }}
+              animate={{ x: "-100%" }}
+              transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+              className="marquee_text pl-4"
+            >
+              Namaste I am Kaushal
+            </motion.h1>
             <motion.h1
               initial={{ x: 0 }}
               animate={{ x: "-100%" }}
@@ -290,7 +305,7 @@ function Home() {
                     <li className="whitespace-nowrap">
                       Completed SEE with certificate
                     </li>
-                    <li>SLC taken at Capital College, Kathmandu.</li>
+                    <li>SLC taken at Capital College</li>
                     <li></li>
                   </ul>
                 </div>
