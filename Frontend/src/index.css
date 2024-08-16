@@ -3,8 +3,13 @@
 @tailwind utilities;
 
 * {
-  font-family: "Roboto";
+  font-family: "Poppins", "Roboto";
 }
+
+.fontchange {
+  font-family: "Cinzel";
+}
+
 .hovering {
   font-family: cursive;
   font-weight: bolder;
@@ -35,11 +40,11 @@
   bottom: 0;
   left: 37%;
   position: absolute;
-  border-bottom: 4px solid #96c11e79;
+  border-bottom: 4px solid #a1d11f79;
 }
 
 .edu_animate:hover::before {
-  animation: line 0.4s ease-in-out forwards;
+  animation: line 0.5s ease-in-out forwards;
 }
 @keyframes line {
   0% {
@@ -53,5 +58,27 @@
   100% {
     width: 100%;
     left: 0%;
+  }
+}
+
+.hover_animate:hover::after {
+  content: "";
+  width: 100%;
+  height: 4%;
+  border-bottom: 3px solid #95c11e;
+  mix-blend-mode: difference;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  animation: hoveranimation 0.4s forwards;
+}
+
+@keyframes hoveranimation {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 100%;
   }
 }

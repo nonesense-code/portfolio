@@ -7,12 +7,10 @@ import Project1 from "../assets/images/Project1.png";
 import Project2 from "../assets/images/Project2.png";
 import Typed from "typed.js";
 import eduvideo from "../assets/videos/education.mp4";
-gsap.registerPlugin(ScrollTrigger);
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
+gsap.registerPlugin(ScrollTrigger);
 function Home() {
-  const [isHovering, setHovering] = useState(false);
-  const [isBgVisible, setBgVisible] = useState(false);
-  const [load, setLoad] = useState(true);
   const el = React.useRef(null);
 
   useEffect(() => {
@@ -30,15 +28,17 @@ function Home() {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behaviour: "smooth" });
+
     gsap.to("#navbar", {
       background: "#000",
       height: "60px",
       duration: 0.2,
       scrollTrigger: {
         trigger: "#navbar",
-        start: "top 0%",
-        end: "top -11%",
-        scrub: 0.6,
+        scroller: "body",
+        start: "top 20%",
+        end: "top 19%",
+        scrub: 0.5,
       },
     });
 
@@ -47,8 +47,8 @@ function Home() {
       scrollTrigger: {
         trigger: "#main",
         scroller: "body",
-        start: "top -20%",
-        end: "top -40%",
+        start: "top 18%",
+        end: "top -20%",
         scrub: 0.4,
       },
     });
@@ -57,60 +57,73 @@ function Home() {
       trigger: "#page1",
       start: "top center",
       end: "bottom center",
-      onEnter: () => setBgVisible(true),
-      onLeave: () => setBgVisible(false),
-      onEnterBack: () => setBgVisible(true),
-      onLeaveBack: () => setBgVisible(false),
     });
   }, []);
 
   return (
     <>
-      {isBgVisible ? (
-        <div
-          className="fixed inset-0 -z-10"
-          style={{
-            backgroundImage: `url(${myImage})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-          }}
-        ></div>
-      ) : (
-        <div className="bg-black"></div>
-      )}
-      <div
-        className="w-full fixed h-20 flex items-center justify-between px-8 z-50"
-        id="navbar"
+      <motion.div
+        initial={{ rotate: "2deg", scale: 0.8, borderRadius: "8%" }}
+        animate={{ rotate: "0deg", scale: 1, borderRadius: "0px" }}
+        transition={{ duration: 1.4, ease: [0.65, 0, 0.35, 1] }}
+        className="h-full w-full overflow-hidden"
       >
-        <div className="text-white text-2xl font-semibold tracking-wide flex">
-          {["K", "a", "u", "s", "h", "a", "l"].map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ y: "80%", opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{
-                duration: 1,
-                delay: index * 0.04,
-                ease: easeInOut,
-              }}
-            >
-              {item}
-            </motion.div>
-          ))}
+        <div
+          style={{
+            backgroundAttachment: "fixed",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+          }}
+        >
+          <img
+            src={myImage}
+            alt={myImage}
+            className="-z-10 fixed inset-0 flex items-center justify-center bg-cover bg-center bg-no-repeat"
+          />
         </div>
-        <div></div>
-      </div>
 
-      <div className="z-40" id="main">
-        <div className="page1 h-screen" id="page1">
-          <div className="rounded-xl overflow-hidden border-none px-10 flex items-center justify-between pt-72">
-            <div className="w-96 backdrop-blur-xl p-4 border-[1px] border-zinc-600/30 rounded-xl">
+        <div
+          className="w-full fixed h-20 flex items-center justify-between px-8 z-50"
+          id="navbar"
+        >
+          <div className="text-white text-2xl font-semibold tracking-wide flex">
+            {["K", "a", "u", "s", "h", "a", "l"].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ y: "80%", opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{
+                  duration: 1,
+                  delay: index * 0.04,
+                  ease: easeInOut,
+                }}
+                className="fontchange tracking-wider"
+              >
+                {item}
+              </motion.div>
+            ))}
+          </div>
+          <div className="text-white flex text-xl font-semibold tracking-tight gap-12">
+            {["Home", "Projects", "Contact"].map((item, index) => (
+              <div
+                key={index}
+                className="hover_animate w-full relative cursor-pointer"
+              >
+                <Link to={`${item.toLowerCase()}`}>{item}</Link>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="" id="main">
+          <div className="page1 h-screen px-12" id="page1">
+            <div className="w-96 backdrop-blur-xl px-2 py-4 border-[1px] border-zinc-600/30 rounded-xl mt-72">
               <h1 className="text-4xl font-semibold border-b-2 border-zinc-400/20 text-sky-300/50">
                 Hello there!
               </h1>
               <h1 className="pt-4 text-3xl font-semibold whitespace-nowrap tracking-tight text-zinc-300/90">
-                Welcome to my Portfolio 👋🏼
+                Welcome to my Portfolio!
               </h1>
               <div className="text-zinc-400 pt-4">
                 <h1 className="text-3xl">I am,</h1>
@@ -119,200 +132,187 @@ function Home() {
                 </div>
               </div>
             </div>
-            <div className="rounded-xl overflow-hidden border-none px-10">
-              <div className="w-96 backdrop-blur-sm rounded-xl">
-                <div>
-                  {!isHovering ? (
-                    <div
-                      onMouseEnter={() => {
-                        setHovering(true);
-                      }}
-                      className="hovering flex items-center text-6xl justify-center font-semibold tracking-tight h-40 relative"
-                    >
-                      <img
-                        src="https://pbs.twimg.com/profile_images/1078262307661111297/R_XwpK5f_400x400.jpg"
-                        alt=""
-                        className="rounded-xl h-full w-full border-4 border-stone-400/30 object-cover object-top"
-                      />
-                    </div>
-                  ) : (
-                    <div
-                      onMouseLeave={() => {
-                        setHovering(false);
-                      }}
-                      className="h-40 w-full"
-                    >
-                      <img
-                        src="https://weallrisetogether.org/wp-content/uploads/2023/03/logo-white.png"
-                        alt=""
-                        className="rounded-xl h-full w-full border-4 border-stone-400/30 object-cover object-top"
-                      />
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
           </div>
-        </div>
 
-        <div className="page2 text-white mb-20">
-          <div className="w-full overflow-hidden whitespace-nowrap flex text-[120px]">
-            <motion.h1
-              initial={{ x: 0 }}
-              animate={{ x: "-100%" }}
-              transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-              className="marquee_text pl-4"
-            >
-              Namaste I am Kaushal
-            </motion.h1>
-            <motion.h1
-              initial={{ x: 0 }}
-              animate={{ x: "-100%" }}
-              transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-              className="marquee_text pl-4"
-            >
-              Namaste I am Kaushal
-            </motion.h1>
-            <motion.h1
-              initial={{ x: 0 }}
-              animate={{ x: "-100%" }}
-              transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-              className="marquee_text pl-4"
-            >
-              Namaste I am Kaushal
-            </motion.h1>
-            <motion.h1
-              initial={{ x: 0 }}
-              animate={{ x: "-100%" }}
-              transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-              className="marquee_text pl-4"
-            >
-              Namaste I am Kaushal
-            </motion.h1>
-            <motion.h1
-              initial={{ x: 0 }}
-              animate={{ x: "-100%" }}
-              transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-              className="marquee_text pl-4"
-            >
-              Namaste I am Kaushal
-            </motion.h1>
-          </div>
-        </div>
-        <div className="page3 p-8" id="page3">
-          <div className="flex flex-col gap-20">
-            <div className="cursor-pointer">
-              <h1 className="text-white text-center text-6xl uppercase font-extrabold tracking-wide">
-                My projects
-              </h1>
+          <div className="page2 text-white mb-20">
+            <div className="w-full overflow-hidden whitespace-nowrap flex text-[120px]">
+              <motion.h1
+                initial={{ x: 0 }}
+                animate={{ x: "-100%" }}
+                transition={{
+                  duration: 12,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+                className="marquee_text pl-4"
+              >
+                Namaste I am Kaushal
+              </motion.h1>
+              <motion.h1
+                initial={{ x: 0 }}
+                animate={{ x: "-100%" }}
+                transition={{
+                  duration: 12,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+                className="marquee_text pl-4"
+              >
+                Namaste I am Kaushal
+              </motion.h1>
+              <motion.h1
+                initial={{ x: 0 }}
+                animate={{ x: "-100%" }}
+                transition={{
+                  duration: 12,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+                className="marquee_text pl-4"
+              >
+                Namaste I am Kaushal
+              </motion.h1>
+              <motion.h1
+                initial={{ x: 0 }}
+                animate={{ x: "-100%" }}
+                transition={{
+                  duration: 12,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+                className="marquee_text pl-4"
+              >
+                Namaste I am Kaushal
+              </motion.h1>
+              <motion.h1
+                initial={{ x: 0 }}
+                animate={{ x: "-100%" }}
+                transition={{
+                  duration: 12,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+                className="marquee_text pl-4"
+              >
+                Namaste I am Kaushal
+              </motion.h1>
             </div>
-            <div className="flex gap-10 items-center justify-evenly">
-              <motion.div
-                whileHover={{
-                  scale: 1.1,
-                  ease: easeOut,
-                }}
-                className="w-96"
-              >
-                <a href="https://techso.vercel.app/" target="_blank">
-                  <img
-                    src={Project1}
-                    alt=""
-                    className="rounded-xl w-full h-full object-cover object-center"
-                  />
-                </a>
-              </motion.div>
-              <motion.div
-                whileHover={{
-                  scale: 1.1,
-                  ease: easeOut,
-                }}
-                className="w-96"
-              >
-                <a
-                  href="https://portfolio-eight-flax-81.vercel.app/"
-                  target="_blank"
+          </div>
+          <div className="page3 p-8" id="page3">
+            <div className="flex flex-col gap-20">
+              <div className="cursor-pointer">
+                <h1 className="text-white text-center text-6xl uppercase font-extrabold tracking-wide">
+                  My projects
+                </h1>
+              </div>
+              <div className="flex gap-10 items-center justify-evenly">
+                <motion.div
+                  whileHover={{
+                    scale: 1.1,
+                    ease: easeOut,
+                  }}
+                  className="w-96"
                 >
-                  <img
-                    src="https://images.unsplash.com/photo-1722641277067-a7fba0ad1a59?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    alt=""
-                    className="rounded-xl w-full h-full object-cover object-center"
-                  />
-                </a>
-              </motion.div>
-              <motion.div
-                whileHover={{
-                  scale: 1.1,
-                  ease: easeOut,
-                }}
-                className="w-96"
-              >
-                <a href="https://tech-cyan-one.vercel.app/" target="_blank">
-                  <img
-                    src={Project2}
-                    alt=""
-                    className="rounded-xl w-full h-full object-cover object-center"
-                  />
-                </a>
-              </motion.div>
+                  <a href="https://techso.vercel.app/" target="_blank">
+                    <img
+                      src={Project1}
+                      alt=""
+                      className="rounded-xl w-full h-full object-cover object-center"
+                    />
+                  </a>
+                </motion.div>
+                <motion.div
+                  whileHover={{
+                    scale: 1.1,
+                    ease: easeOut,
+                  }}
+                  className="w-96"
+                >
+                  <a
+                    href="https://portfolio-eight-flax-81.vercel.app/"
+                    target="_blank"
+                  >
+                    <img
+                      src="https://images.unsplash.com/photo-1722641277067-a7fba0ad1a59?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                      alt=""
+                      className="rounded-xl w-full h-full object-cover object-center"
+                    />
+                  </a>
+                </motion.div>
+                <motion.div
+                  whileHover={{
+                    scale: 1.1,
+                    ease: easeOut,
+                  }}
+                  className="w-96"
+                >
+                  <a href="https://tech-cyan-one.vercel.app/" target="_blank">
+                    <img
+                      src={Project2}
+                      alt=""
+                      className="rounded-xl w-full h-full object-cover object-center"
+                    />
+                  </a>
+                </motion.div>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="page4 h-screen overflow-hidden mt-32" id="page4">
-          <div
-            className="absolute rounded-t-2xl overflow-hidden"
-            id="bookvideo"
-          >
-            <video
-              className="brightness-[40%] blur-sm"
-              src={eduvideo}
-              loop
-              muted
-              autoPlay
-              playsInline
-            >
-              Your browser does not support the video tag.
-            </video>
-          </div>
-          <div className="text-black relative py-10 p-8 flex items-center justify-center flex-col">
-            <div className="relative text-5xl font-semibold tracking-wider mt-12 text-center text-[#95c11e] cursor-pointer">
-              <h1 className="edu_animate">Education</h1>
-            </div>
+          <div className="page4 h-screen overflow-hidden mt-32" id="page4">
             <div
-              className="edu_details flex items-center justify-evenly w-full pt-24"
-              id="eds"
+              className="absolute rounded-t-2xl overflow-hidden"
+              id="bookvideo"
             >
-              <div className="flex flex-col items-center justify-center gap-6 h-96 w-96 px-8 py-2 text-blue-400 font-semibold backdrop-blur-sm text-2xl">
-                <div className="text-4xl font-semibold tracking-wide cursor-pointer text-stone-400">
-                  Online Education
-                </div>
-                <div>
-                  <ul>
-                    <li>HTML</li>
-                    <li>CSS</li>
-                    <li>JavaScript</li>
-                    <li>React</li>
-                  </ul>
-                </div>
+              <video
+                className="brightness-[40%] blur-sm"
+                src={eduvideo}
+                loop
+                muted
+                autoPlay
+                playsInline
+              >
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div className="text-black relative py-10 p-8 flex items-center justify-center flex-col">
+              <div className="relative text-5xl font-semibold tracking-wider text-center text-[#95c11e] cursor-pointer mt-32">
+                <h1 className="edu_animate">Education</h1>
               </div>
-              <div className="flex flex-col items-center justify-center gap-6 h-96 w-96 px-8 py-2 text-blue-400 font-semibold backdrop-blur-sm text-2xl">
-                <div className="text-4xl font-semibold tracking-wide cursor-pointer text-stone-400">
-                  School Level
+              <div
+                className="edu_details flex items-center justify-evenly w-full pt-24"
+                id="eds"
+              >
+                <div className="flex flex-col items-center justify-center gap-6 h-96 w-96 px-8 py-2 text-blue-400 font-semibold backdrop-blur-sm text-2xl">
+                  <div className="text-4xl font-semibold tracking-wide cursor-pointer text-stone-400">
+                    Online Education
+                  </div>
+                  <div>
+                    <ul>
+                      <li>HTML</li>
+                      <li>CSS</li>
+                      <li>JavaScript</li>
+                      <li>React</li>
+                    </ul>
+                  </div>
                 </div>
-                <div>
-                  <ul>
-                    <li className="whitespace-nowrap">
-                      Completed SEE with certificate
-                    </li>
-                    <li>SLC taken at Capital College</li>
-                    <li></li>
-                  </ul>
+                <div className="flex flex-col items-center justify-center gap-6 h-96 w-96 px-8 py-2 text-blue-400 font-semibold backdrop-blur-sm text-2xl">
+                  <div className="text-4xl font-semibold tracking-wide cursor-pointer text-stone-400">
+                    School Level
+                  </div>
+                  <div>
+                    <ul>
+                      <li className="whitespace-nowrap">
+                        Completed SEE with certificate
+                      </li>
+                      <li>SLC taken at Capital College</li>
+                      <li></li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 }
