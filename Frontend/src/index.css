@@ -6,6 +6,12 @@
   font-family: "Poppins", "Roboto";
 }
 
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
 .fontchange {
   font-family: "Cinzel";
 }
@@ -81,4 +87,51 @@
   100% {
     width: 100%;
   }
+}
+
+.animate_border_ring::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border-top: 16px solid #2a8ce2;
+  border-bottom: 16px solid #8c000f;
+  animation: border_animate infinite linear 4s;
+}
+
+@keyframes border_animate {
+  0% {
+    rotate: 0deg;
+  }
+
+  100% {
+    rotate: 360deg;
+  }
+}
+
+.grad {
+  background: linear-gradient(120deg, #183350, lightseagreen);
+}
+
+.stroke {
+  -webkit-text-stroke-width: 4px;
+  -webkit-text-stroke-color: red;
+  opacity: 40%;
+}
+
+.strokes {
+  -webkit-text-stroke-width: 1px;
+  background: linear-gradient(
+    270deg,
+    hsl(219, 49%, 18%),
+    hsl(180, 100%, 89%, 30%),
+    hsl(212, 52%, 21%, 30%)
+  );
+  text-shadow: 10px 10px 100px #6b7b76;
+  border-radius: 30px;
+  font-family: "Roboto Slab";
+  user-select: none;
 }
