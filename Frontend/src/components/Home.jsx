@@ -46,7 +46,6 @@ function Home() {
         scroller: "body",
         start: "top -10%",
         end: "top -40%",
-        markers: true,
         scrub: 0.6,
       },
     });
