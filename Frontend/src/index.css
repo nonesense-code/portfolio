@@ -89,29 +89,6 @@ body {
   }
 }
 
-.animate_border_ring::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border-top: 16px solid #2a8ce2;
-  border-bottom: 16px solid #8c000f;
-  animation: border_animate infinite linear 4s;
-}
-
-@keyframes border_animate {
-  0% {
-    rotate: 0deg;
-  }
-
-  100% {
-    rotate: 360deg;
-  }
-}
-
 .grad {
   background: linear-gradient(120deg, #183350, lightseagreen);
 }
@@ -134,4 +111,15 @@ body {
   border-radius: 30px;
   font-family: "Roboto Slab";
   user-select: none;
+}
+
+.heading::after {
+  content: "Welcome to my Portfolio!";
+  position: absolute;
+  left: 0;
+  top: -3px;
+  left: -3px;
+  color: rgba(32, 178, 171, 0.788);
+  -webkit-text-stroke: 1px #e89a19;
+  z-index: -1;
 }

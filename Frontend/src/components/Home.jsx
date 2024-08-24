@@ -26,7 +26,6 @@ function Home() {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behaviour: "smooth" });
-
     gsap.to("#navbar", {
       background: "#000",
       height: "60px",
@@ -34,8 +33,8 @@ function Home() {
       scrollTrigger: {
         trigger: "#navbar",
         scroller: "body",
-        start: "top 26%",
-        end: "top 19%",
+        start: "bottom 0%",
+        end: "top -10%",
         scrub: 0.3,
       },
     });
@@ -45,8 +44,9 @@ function Home() {
       scrollTrigger: {
         trigger: "#main",
         scroller: "body",
-        start: "top 22%",
-        end: "top -8%",
+        start: "top -10%",
+        end: "top -40%",
+        markers: true,
         scrub: 0.6,
       },
     });
@@ -68,19 +68,14 @@ function Home() {
 
   return (
     <>
-      <motion.div
-        initial={{ rotate: "2deg", scale: 0.8, borderRadius: "8%" }}
-        animate={{ rotate: "0deg", scale: 1, borderRadius: "0px" }}
-        transition={{ duration: 1, ease: [0.65, 0, 0.35, 1] }}
-        className="h-full w-full overflow-hidden"
-      >
-        <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1502139214982-d0ad755818d8?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt=""
-            className=""
-          />
-        </div>
+      <motion.div className="h-full w-full overflow-hidden">
+        <div
+          className="fixed inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1639327380081-bf86fc57a7a5?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`,
+            backgroundAttachment: "fixed",
+          }}
+        ></div>
         <div
           className="w-full fixed h-20 flex items-center justify-between px-8 z-50"
           id="navbar"
@@ -120,11 +115,12 @@ function Home() {
             id="page1"
           >
             <div>
-              <div className="w-96 backdrop-blur-xl px-2 py-4 border-[1px] border-zinc-600/30 rounded-xl">
+              <div className="backdrop-blur-xl px-2 py-4 border-[1px] border-zinc-600/30 rounded-xl">
                 <h1 className="text-4xl font-semibold border-b-2 border-zinc-400/20 text-sky-300/50">
                   Hello there!
                 </h1>
-                <h1 className="pt-4 text-3xl font-semibold whitespace-nowrap tracking-tight text-zinc-300/90">
+
+                <h1 className="heading relative uppercase text-[50px] font-extrabold whitespace-nowrap overflow-hidden text-stone-200">
                   Welcome to my Portfolio!
                 </h1>
                 <div className="text-zinc-400 pt-4">
@@ -135,14 +131,12 @@ function Home() {
                 </div>
               </div>
             </div>
-            <div className="h-72 w-72 overflow-hidden">
-              <div className="animate_border_ring h-full w-full relative overflow-hidden">
-                <img
-                  src={myImage}
-                  alt=""
-                  className="h-full w-full object-cover object-top select-none rounded-full p-10"
-                />
-              </div>
+            <div className="h-72 w-72 rounded-full overflow-hidden border-[8px] border-black p-2">
+              <img
+                src={myImage}
+                alt=""
+                className="h-full w-full object-cover object-top select-none rounded-full border-[4px] border-white"
+              />
             </div>
           </div>
 
@@ -217,25 +211,25 @@ function Home() {
             <div className="h-full w-full text-4xl bg-[url('https://images.unsplash.com/photo-1535868463750-c78d9543614f?q=80&w=1476&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-top">
               <div className="elem h-[20%] w-full border-b-2 border-t-2 border-white flex items-center justify-start relative">
                 <h1 className="text-[#fff] px-4">R</h1>
-                <div className="h-32 w-32 border-2 rounded-full border-[#95c11e] items-center justify-center text-sky-600 absolute hidden select-none cursor-pointer">
+                <div className="h-32 w-32 border-2 rounded-full items-center justify-center text-sky-600 absolute hidden select-none cursor-pointer bg-[#001] mix-blend-difference">
                   ISE
                 </div>
               </div>
               <div className="elem h-[20%] w-full border-b-2 border-white flex items-center justify-start relative">
                 <h1 className="text-[#fff] px-3">I</h1>
-                <div className="h-32 w-32 border-2 rounded-full border-[#95c11e] items-center justify-center text-sky-600 absolute hidden select-none cursor-pointer">
+                <div className="h-32 w-32 border-2 rounded-full items-center justify-center text-sky-600 absolute hidden select-none cursor-pointer bg-[#001] mix-blend-difference">
                   NSPIRE
                 </div>
               </div>
               <div className="elem h-[20%] w-full border-b-2 border-white flex items-center justify-start relative">
                 <h1 className="text-[#fff] px-3">S</h1>
-                <div className="h-32 w-32 border-2 rounded-full border-[#95c11e]  items-center justify-center text-sky-600 absolute hidden select-none cursor-pointer">
+                <div className="h-32 w-32 border-2 rounded-full items-center justify-center text-sky-600 absolute hidden select-none cursor-pointer bg-[#001] mix-blend-difference">
                   OUR
                 </div>
               </div>
               <div className="elem h-[20%] w-full border-b-2 border-white flex items-center justify-start relative">
                 <h1 className="text-[#fff] px-3">E</h1>
-                <div className="h-32 w-32 border-2 rounded-full border-[#95c11e]  items-center justify-center text-sky-600 absolute hidden select-none cursor-pointer">
+                <div className="h-32 w-32 border-2 rounded-full items-center justify-center text-sky-600 absolute hidden select-none cursor-pointer bg-[#001] mix-blend-difference">
                   ARN
                 </div>
               </div>
